@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "three": "^0.174.0",
+    "threejs-toys": "^0.0.8"
+  }
+}

@@ -1,0 +1,36 @@
+body{
+    font-family: 'Arial', sans-serif;
+    margin: 20;
+    padding: 20;
+    background: #202020;
+    color: #ffffff;
+}
+
+a {color: #ffffff;}
+a:hover {color: #8133ff;}
+a:active {color: #00ffff;}  
+a:visited {color: #91ff00;}
+a:focus {color: #6f00ff;}
+
+
+h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4em;
+    color: #fff;
+    text-shadow: 
+        0 0 7px rgb(255, 255, 255),
+        0 0 10px rgb(255, 0, 242),
+        0 0 21px rgb(255, 17, 243),
+        0 0 42px rgb(255, 35, 255),
+        0 0 82px rgb(255, 72, 240),
+        0 0 92px rgb(255, 117, 255),
+        0 0 102px rgb(255, 168, 255),
+        0 0 151px rgb(255, 206, 249);
+    
+    /* Efeito de brilho adicional */
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
+    
+}
+
+
+
