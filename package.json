@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@vercel/speed-insights": "^1.2.0",
     "three": "^0.174.0",
     "threejs-toys": "^0.0.8"
   }
