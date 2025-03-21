@@ -5,61 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beck's</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<header>
-    <ul class="nav nav-pills">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Active</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-    </ul>
-</header>
 
-<section id="home" class="container my-5">
-    <h1 class="text-center">Beck's Store</h1>
-    <p class="text-center">The Fashion side of Second Life</p>
-</section>
-<div class="container-md">
-    <div class="row">
-        <div class="col-8">
-            <div class="blog-post">
-                <h3>Post 1</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            </div>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Produtos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contato</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="container my-5">
+        <h1 class="text-center display-4">Beck's Store</h1>
+        <p class="lead text-center">The Fashion side of Second Life</p>
+    </section>
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <article class="blog-post">
+            <h2 class="mb-4">Post 1</h2>
+            <p class="text-justify">Lorem ipsum dolor sit amet...</p>
+          </article>
         </div>
-        <div class="col-4">
-            <div class="side-menu">
-                <h5>Menu Lateral</h5>
-                <ul>
-                    <li><a href="#">Link 1</a></li>
-                    <li><a href="#">Link 2</a></li>
-                    <li><a href="#">Link 3</a></li>
+        
+        <div class="col-md-4">
+          <aside class="sidebar">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h5 class="card-title">Menu</h5>
+                <ul class="list-unstyled">
+                  <li><a href="#" class="text-decoration-none">Coleções</a></li>
+                  <li><a href="#" class="text-decoration-none">Promoções</a></li>
+                  <li><a href="#" class="text-decoration-none">Customização</a></li>
                 </ul>
-            
-                <div class="last-blogs">
-                    <h5>Últimos Posts</h5>
-                    <ul>
-                        <li><a href="#">Post 1</a></li>
-                        <li><a href="#">Post 2</a></li>
-                        <li><a href="#">Post 3</a></li>
-                    </ul>
-                </div>
+              </div>
             </div>
+            
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Últimos Posts</h5>
+                <ul class="list-unstyled">
+                  <li><a href="#" class="text-decoration-none">Novos Modelos</a></li>
+                  <li><a href="#" class="text-decoration-none">Tendências 2025</a></li>
+                  <li><a href="#" class="text-decoration-none">Eventos SL</a></li>
+                </ul>
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
+    </div>
+  </main>
 
-</div>
-
-
-
+  <speed-insights mode="auto" debug="true"></speed-insights>
+  
+  <!-- Ordem CORRETA de scripts -->
+  <script src="https://unpkg.com/@vercel/speed-insights@0.1.2/dist/script.umd.js"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="scripts.js"></script>
 </body>
-<script src="scripts.js"></script>
 </html>
