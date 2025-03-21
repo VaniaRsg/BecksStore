@@ -2,15 +2,9 @@ body{
     font-family: 'Arial', sans-serif;
     margin: 20;
     padding: 20;
-    background: #202020;
+    background: #181818;
     color: #ffffff;
 }
-
-a {color: #ffffff;}
-a:hover {color: #8133ff;}
-a:active {color: #00ffff;}  
-a:visited {color: #91ff00;}
-a:focus {color: #6f00ff;}
 
 
 h1 {
