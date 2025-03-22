@@ -74,8 +74,20 @@
   <speed-insights mode="auto" debug="true"></speed-insights>
   
   <!-- Ordem CORRETA de scripts -->
-  <script src="https://unpkg.com/@vercel/speed-insights@0.1.2/dist/script.umd.js"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/@vercel/speed-insights@0.1.2/dist/script.umd.js"></script>
+    <script src="speed-insights.vue"></script>
+
+    <script>
+    const { createApp } = Vue
+    
+    // Registra o componente globalmente
+    const SpeedInsights = window.speedInsights.VueSpeedInsights
+    const app = createApp({})
+    
+    app.component('SpeedInsights', SpeedInsights)
+    app.mount('#app')
+    </script>
   <script src="scripts.js"></script>
 </body>
 </html>
