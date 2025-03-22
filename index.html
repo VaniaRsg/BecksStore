@@ -6,69 +6,56 @@
     <title>Beck's</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/blog.css">
 </head>
 
 <body>
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-        <ul class="nav nav-pills">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Produtos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contato</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <nav class="navbar navbar-expand-md navbar-dark shadow p-3 mb-5 bg-body-tertiary rounded">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#home">Beck's Store</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link active" aria-current="page" href="https://marketplace.secondlife.com/stores/188783" target="_blank" rel="noopener noreferrer">Loja</a>
+              <a class="nav-link" href="#">Galeria</a>
+              <a class="nav-link" href="#">Contato</a>
+            </div>
+          </div>
+        </div>
+      </nav>
   </header>
 
   <main>
     <section id="home" class="container my-5">
-        <h1 class="text-center display-4">Beck's Store</h1>
-        <p class="lead text-center">The Fashion side of Second Life</p>
+        <h1>Beck's Store</h1>
+        <p>The Fashion side of Second Life</p>
     </section>
     
     <div class="container">
-      <div class="row">
-        <div class="col-md-8">
-          <article class="blog-post">
-            <h2 class="mb-4">Post 1</h2>
-            <p class="text-justify">Lorem ipsum dolor sit amet...</p>
-          </article>
-        </div>
-        
-        <div class="col-md-4">
-          <aside class="sidebar">
-            <div class="card mb-4">
-              <div class="card-body">
-                <h5 class="card-title">Menu</h5>
-                <ul class="list-unstyled">
-                  <li><a href="#" class="text-decoration-none">Coleções</a></li>
-                  <li><a href="#" class="text-decoration-none">Promoções</a></li>
-                  <li><a href="#" class="text-decoration-none">Customização</a></li>
-                </ul>
-              </div>
+      <div class="container-fluid">
+        <div class="row">
+            <div class="col-md" >
+                <section id="posts" class="container py-5">
+                    <div id="posts-container" class="row">
+                      <!-- Posts JavaScript -->
+                    </div>
+                  </section>
+            </div>
+            <div class="col-sd">
+                <h5>Sidebar</h5>
             </div>
             
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Últimos Posts</h5>
-                <ul class="list-unstyled">
-                  <li><a href="#" class="text-decoration-none">Novos Modelos</a></li>
-                  <li><a href="#" class="text-decoration-none">Tendências 2025</a></li>
-                  <li><a href="#" class="text-decoration-none">Eventos SL</a></li>
-                </ul>
-              </div>
-            </div>
-          </aside>
         </div>
       </div>
+      
+      
+      
     </div>
+
+
   </main>
 
 
@@ -77,5 +64,6 @@
   </script>
   <script defer src="/_vercel/speed-insights/script.js"></script>
   <script src="scripts.js"></script>
+  <script src="js/blog-manager.js"></script>
 </body>
 </html>

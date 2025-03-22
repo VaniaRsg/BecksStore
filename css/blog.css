@@ -1,0 +1,39 @@
+.post-card {
+    transition: transform 0.3s ease;
+    
+  }
+  
+  .post-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .btn-becks {
+    background: linear-gradient(45deg, #ff00ff, #00ffff);
+    border: none;
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-becks::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(45deg);
+    transition: all 0.5s ease;
+  }
+  
+  .btn-becks:hover::after {
+    transform: rotate(45deg) translateX(100%);
+  }
+  
+  .neon-title {
+    text-shadow: 0 0 10px #ff00ff;
+    font-size: 1.5rem;
+  }
