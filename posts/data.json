@@ -12,6 +12,8 @@
         "Juicy Add-On (mod)",
         "Nerido PushUp (mod)"],
         "resumo": "Novos trajes luminosos para festas virtuais...",
+        "buyLink": "https://marketplace.secondlife.com/p/Becks-20-Dress-eBODY-Reborn-Legacy-ClassicPerky-Juicy-Add-OnPushUp/23912599",
+        "demoLink": "https://marketplace.secondlife.com/p/Becks-DEMO-20-Dress-eBODY-Reborn-Legacy-ClassicPerky-Juicy-Add-OnPushUp/23912598",
         "conteudo": [
           "Dress com mais de 20 variações de cores e padrões",
           "Sistema de camadas dinâmicas:",
@@ -23,19 +25,49 @@
       },
       {
         "id": 2,
-        "data": "2025-03-15",
-        "titulo": "Edição Limitada Inverno",
-        "imagem": "images/inverno.jpg",
-        "resumo": "Casacos com efeito neve realista...",
-        "conteudo": "<p>Texturas 4K compatíveis...</p>"
+        "data": "2025-03-22",
+        "titulo": "!Beck's! 20+ Dress",
+        "imagem": "images/20dress.jpg",
+        "marcas": [
+        "eBODY Reborn", 
+        "Legacy Classic",
+        "Legacy Perky",
+        "Juicy Add-On (mod)",
+        "Nerido PushUp (mod)"],
+        "resumo": "Novos trajes luminosos para festas virtuais...",
+        "buyLink": "https://marketplace.secondlife.com/p/Becks-20-Dress-eBODY-Reborn-Legacy-ClassicPerky-Juicy-Add-OnPushUp/23912599",
+        "demoLink": "https://marketplace.secondlife.com/p/Becks-DEMO-20-Dress-eBODY-Reborn-Legacy-ClassicPerky-Juicy-Add-OnPushUp/23912598",
+        "conteudo": [
+          "Dress com mais de 20 variações de cores e padrões",
+          "Sistema de camadas dinâmicas:",
+          "- Ajuste de transparência",
+          "- Combinação de texturas",
+          "- Iluminação integrada",
+          "Customização em tempo real via HUD incluído"
+        ]
       },
       {
         "id": 3,
-        "data": "2025-03-29",
-        "titulo": "Coleção Primavera Digital",
-        "imagem": "images/primavera.jpg",
-        "resumo": "Flores virtuais com animação procedural...",
-        "conteudo": "<p>Novo sistema de física para tecidos...</p>"
+        "data": "2025-03-22",
+        "titulo": "!Beck's! 20+ Dress",
+        "imagem": "images/20dress.jpg",
+        "marcas": [
+        "eBODY Reborn", 
+        "Legacy Classic",
+        "Legacy Perky",
+        "Juicy Add-On (mod)",
+        "Nerido PushUp (mod)"],
+        "resumo": "Novos trajes luminosos para festas virtuais...",
+        "buyLink": "https://marketplace.secondlife.com/p/Becks-20-Dress-eBODY-Reborn-Legacy-ClassicPerky-Juicy-Add-OnPushUp/23912599",
+        "demoLink": "https://marketplace.secondlife.com/p/Becks-DEMO-20-Dress-eBODY-Reborn-Legacy-ClassicPerky-Juicy-Add-OnPushUp/23912598",
+        "conteudo": [
+          "Dress com mais de 20 variações de cores e padrões",
+          "Sistema de camadas dinâmicas:",
+          "- Ajuste de transparência",
+          "- Combinação de texturas",
+          "- Iluminação integrada",
+          "Customização em tempo real via HUD incluído"
+        ]
       }
     ]
   }

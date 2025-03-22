@@ -22,13 +22,12 @@ class BlogManager {
             style="background-color: #181818;
                     border: 2px solid #FFFFFF;
                     box-shadow: none !important;
-                    position: relative;"> <!-- Added relative positioning -->
+                    position: relative;"> 
           <div class="image-container">
             <img src="${post.imagem}" class="card-img-top" alt="${post.titulo}">
             <div class="overlay-content" data-post-id="${post.id}" style="display: none;">
               <div class="overlay-header">
                 <h3>${post.titulo}</h3>
-                <button class="close-overlay">&times;</button>
               </div>
               
           </div>
@@ -38,7 +37,7 @@ class BlogManager {
             ${this.formatDate(post.data)}
             </small>
             
-            <h2 class="neon-title">${post.titulo}</h2>
+            <h2 class="posttitle">${post.titulo}</h2>
 
             <div class="overlay-body">
               ${Array.isArray(post.conteudo) ? 
@@ -54,8 +53,19 @@ class BlogManager {
                 ${post.marcas.map(marca => `<li class="specs-item">${marca}</li>`).join('')}
                 </ul>
             </div>` : ''}
+                        <div class="action-buttons mt-4">
+              ${post.buyLink ? 
+                `<a href="${post.buyLink}" target="_blank" class="btn btn-buy me-2">
+                  BUY
+                </a>` : ''}
+              ${post.demoLink ? 
+                `<a href="${post.demoLink}" target="_blank" class="btn btn-demo">
+                  DEMO
+                </a>` : ''}
+            </div>
+          </div>
+        </div>
             
-            <button class="btn btn-becks show-overlay" data-post-id="${post.id}">Ver Detalhes</button>
           </div>
         </div>
       </article>
@@ -93,10 +103,21 @@ class BlogManager {
 // CSS necessário
 const style = document.createElement('style');
 style.textContent = `
-  .image-container {
+
+.image-container {
     position: relative;
     overflow: hidden;
-  }
+}
+
+.posttitle {
+font-size: 1.5rem;
+color:rgb(255, 255, 255);
+text-shadow: 
+        0 0 2px rgb(255, 0, 255),
+        0 0 5px rgb(255, 0, 242),
+        0 0 15px rgb(255, 17, 243);
+filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.46));
+}
 
 .overlay-body {
   font-size: 0.9rem;
@@ -104,6 +125,38 @@ style.textContent = `
 
 .content-line {
 text-align: justify;
+}
+
+.btn-buy {
+  background: linear-gradient(45deg,rgb(255, 0, 200),rgb(0, 238, 255));
+  border: 1px solid rgb(255, 255, 255);
+  color: white !important;
+  transition: all 0.3s ease;
+}
+
+.btn-demo {
+  background: linear-gradient(45deg,rgb(0, 204, 255),rgb(225, 0, 255));
+  border: 1px solid rgb(255, 255, 255);
+  color: white !important;
+  transition: all 0.3s ease;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin-top: 20px;
+}
+
+.btn-buy:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgb(0, 238, 255);
+}
+
+.btn-demo:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgb(0, 247, 255);
 }
 
 
