@@ -5,8 +5,18 @@
         "data": "2025-03-22",
         "titulo": "!Beck's! 20+ Dress",
         "imagem": "images/20dress.jpg",
+        "marcas": [
+        "eBODY Reborn", 
+        "Legacy Classic",
+        "Legacy Perky",
+        "Juicy Add-On (mod)",
+        "Nerido PushUp (mod)"],
         "resumo": "Novos trajes luminosos para festas virtuais...",
-        "conteudo": "<p>Dress with more than 20 color and print options Fits perfectly with bodies: eBODY Reborn, Legacy Classic, Legacy Perky, And with the mods: Juicy Add-On, Nerido PushUp</p>"
+        "conteudo": [
+          "Dress com mais de 20 variações de cores e padrões",
+          "Sistema de camadas dinâmicas:- Ajuste de transparência- Combinação de texturas- Iluminação integrada",
+          "Customização em tempo real via HUD incluído"
+        ]
       },
       {
         "id": 2,
