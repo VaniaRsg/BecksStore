@@ -36,7 +36,27 @@ class BlogManager {
           <div class="image-container">
             <img src="${post.imagem}" class="card-img-top" alt="${post.titulo}">         
           </div>   
-          
+          <div class="instagram-controls-container">
+              
+              <div class="control-group">
+                <button class="instagram-btn like-btn" onclick="toggleLike()">
+                  <i class="bi bi-heart fs-4"></i>
+                </button>
+                <span class="counter" id="likeCounter">0</span>
+              </div>
+
+              <div class="control-group">
+                <button class="instagram-btn">
+                  <i class="bi bi-chat fs-4"></i>
+                </button>
+                <span class="counter" id="commentCounter">0</span>
+              </div>
+
+              <button class="instagram-btn share-btn" onclick="sharePost()">
+                <i class="bi bi-send fs-4"></i>
+              </button>
+            </div>
+
           <div class="card-body">
             <small class="text-muted">
               ${this.formatDate(post.data)}
@@ -46,7 +66,7 @@ class BlogManager {
             
             <div class="overlay-body">
               ${Array.isArray(post.conteudo) 
-                ? post.conteudo.map(item => `<p class="content-line">${item}</p>`).join('')
+                ? post.conteudo.map(item => `<p>${item}</p>`).join('')
                 : post.conteudo}
             </div>
             

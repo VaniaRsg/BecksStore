@@ -4,32 +4,35 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Beck's</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="/forms/fstyle.css">
     </head>
 
     <body>
     <header>
-        <nav class="navbar navbar-expand-md navbar-dark shadow p-3 mb-5 bg-body-tertiary rounded">
+        <nav class="navbar navbar-expand-md cyber-nav">
             <div class="container-fluid">
-            <a class="navbar-brand" href="#home">Beck's Store</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <a class="navbar-brand" href="#">Beck's Store</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCyber" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                <a class="nav-link" href="https://marketplace.secondlife.com/stores/188783" target="_blank" rel="noopener noreferrer">Marketplace</a>
-                <a class="nav-link" href="#">Gallery</a>
-                <a class="nav-link" href="/forms/form.html">Contact</a>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarCyber">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link cyber-link" href="#home">Home</a>
+                    <a class="nav-link cyber-link" href="#gallery">Gallery</a>
+                    <a class="nav-link cyber-link" href="#form">Contact</a>
+                    <a class="nav-link cyber-link" href="https://marketplace.secondlife.com/stores/188783" target="_blank" rel="noopener noreferrer">SL Marketplace</a>
                 </div>
+              </div>
             </div>
-            </div>
-        </nav>
+          </nav>
     </header>
 
         <main>
             <section id="home" class="home">
-                <div class="banner"><h1>Beck's Store</h1></div>
+                <h1>Beck's Store</div>
                 <h4>The Fashion side of Second Life</h4>
                 
                         <div id="posts" class="posts">
@@ -49,6 +52,55 @@
                             </div>
                         </div>
             </section>
+            
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+            <section id="form" class="form">
+                <div class="container">
+                    <div class="contact-wrap">
+                        <h3 class="mb-4 text-center">Contact Us!</h3>
+                        <p>Send your message here</p>
+                    </div>
+    
+                    <form method="POST" id="contactForm" name="contactForm" class="contactForm">
+                        <div class="row centered-row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="slname" id="slname" placeholder="SL Name">
+                                </div>
+                            </div>
+                            <div class="col-md-12"> 
+                                <div class="form-group">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <textarea name="message" class="form-control" id="message" cols="30" rows="8" placeholder="Message"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="submit" value="Send Message" class="btn btn-primary">
+                                        <div class="submitting"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+
         </main>
 
     <script>

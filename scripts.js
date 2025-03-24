@@ -1,34 +1,39 @@
-// Foco automático ao carregar
-window.addEventListener('DOMContentLoaded', () => {
-    const frame = document.getElementById('marketFrame');
-    frame.contentWindow.focus();
-  });
-  
-  // Função de overlay
-  function focusFrame() {
-    const frame = document.getElementById('marketFrame');
-    frame.style.pointerEvents = 'auto';
-    frame.contentWindow.focus();
-    document.querySelector('.frame-overlay').style.display = 'none';
-  }
-  
-  // Reset de segurança
-  window.addEventListener('blur', () => {
-    const frame = document.getElementById('marketFrame');
-    if(document.activeElement === frame) {
-      frame.style.pointerEvents = 'none';
-      document.querySelector('.frame-overlay').style.display = 'flex';
-    }
-  });
+var scrollSpy = new bootstrap.ScrollSpy(document.body, {
+  target: '#navbar-example'
+})
 
-  const links = document.querySelectorAll("a");
 
-  links.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      event.preventDefault();
-      event.target.classList.add("active");
-      setTimeout(() => {
-        event.target.classList.remove("active");
-      }, 500);
+  let isLiked = false;
+let likeCount = 0;
+const likeBtn = document.querySelector('.like-btn');
+const likeIcon = likeBtn.querySelector('i');
+
+function toggleLike() {
+  isLiked = !isLiked;
+  likeBtn.classList.toggle('liked');
+  likeCount = isLiked ? likeCount + 1 : likeCount - 1;
+  document.getElementById('likeCounter').textContent = likeCount;
+  
+  // Troca o ícone
+  likeIcon.classList.toggle('bi-heart');
+  likeIcon.classList.toggle('bi-heart-fill');
+}
+
+// Sistema de Compartilhamento
+function sharePost() {
+  if (navigator.share) {
+    navigator.share({
+      title: 'Instagram Post',
+      url: window.location.href
     });
-  });
+  } else {
+    // Fallback para desktop
+    const tempInput = document.createElement('input');
+    tempInput.value = window.location.href;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempInput);
+    alert('Link copiado!');
+  }
+}
