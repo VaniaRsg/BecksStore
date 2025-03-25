@@ -177,7 +177,7 @@
                                     const valor = document.getElementById(id).value.trim();
                                     if (!valor) {
                                     errorDiv.textContent = `⚠️ O campo ${label} é obrigatório!`;
-                                    formContainer.prepend(errorDiv);
+                                    document.body.appendChild(errorDiv);
                                     setTimeout(() => errorDiv.remove(), 3000);
                                     return;
                                     }
@@ -187,7 +187,7 @@
                                 const email = document.getElementById('email').value.trim();
                                 if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
                                     errorDiv.textContent = '⚠️ Por favor, insira um e-mail válido!';
-                                    formContainer.prepend(errorDiv);
+                                    document.body.appendChild(errorDiv);
                                     setTimeout(() => errorDiv.remove(), 3000);
                                     return;
                                 }
@@ -198,7 +198,7 @@
                                     const tiposPermitidos = /image\/(png|jpeg|gif|webp)/;
                                     if (!tiposPermitidos.test(arquivo.type)) {
                                     errorDiv.textContent = '⚠️ Por favor, selecione apenas imagens (PNG, JPG, GIF)!';
-                                    formContainer.prepend(errorDiv);
+                                    document.body.appendChild(errorDiv);
                                     setTimeout(() => errorDiv.remove(), 3000);
                                     return;
                                     }
@@ -206,7 +206,7 @@
                                     // Verificar tamanho do arquivo (8MB máximo)
                                     if (arquivo.size > 8 * 1024 * 1024) {
                                     errorDiv.textContent = '⚠️ O arquivo é muito grande (máximo 8MB)!';
-                                    formContainer.prepend(errorDiv);
+                                    document.body.appendChild(errorDiv);
                                     setTimeout(() => errorDiv.remove(), 3000);
                                     return;
                                     }
@@ -229,7 +229,7 @@
 
                                     if (response.ok) {
                                     successDiv.textContent = '✅ Mensagem enviada com sucesso!';
-                                    formContainer.prepend(successDiv);
+                                    document.body.appendChild(successDiv);
                                     form.reset();
                                     setTimeout(() => successDiv.remove(), 5000);
                                     } else {
@@ -237,7 +237,7 @@
                                     }
                                 } catch (error) {
                                     errorDiv.textContent = '⚠️ Erro ao enviar. Tente novamente mais tarde.';
-                                    formContainer.prepend(errorDiv);
+                                    document.body.appendChild(errorDiv);
                                     setTimeout(() => errorDiv.remove(), 3000);
                                 }
                                 });

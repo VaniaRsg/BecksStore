@@ -23,7 +23,7 @@ class BlogManager {
       });
       
       // Ordena os posts por data (do mais recente para o mais antigo)
-      const sortedPosts = data.posts.sort((a, b) => 
+      const sortedPosts = validPosts.sort((a, b) => 
         new Date(b.data) - new Date(a.data)
       );
 
@@ -40,20 +40,20 @@ class BlogManager {
   }
 
   setupPostLinks() {
-  document.querySelectorAll('.post-link').forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const postId = parseInt(link.closest('.archive-post').dataset.id);
-      const selectedPost = this.archivedPosts.find(p => p.id === postId);
-      
-      if (selectedPost) {
-        // Remove o post atual e exibe o selecionado
-        this.postsContainer.innerHTML = '';
-        this.renderPosts([selectedPost]);
-      }
+    document.querySelectorAll('.post-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const postId = parseInt(link.closest('.archive-post').dataset.id);
+        const selectedPost = this.archivedPosts.find(p => p.id === postId);
+        
+        if (selectedPost) {
+          // Remove o post atual e exibe o selecionado
+          this.postsContainer.innerHTML = '';
+          this.renderPosts([selectedPost]);
+        }
+      });
     });
-  });
-}
+  }
 
   renderPosts(posts) {
     this.postsContainer.innerHTML = posts.map(post => `
@@ -189,8 +189,8 @@ class BlogManager {
               </div>
               <div class="archive-posts collapse">
                 ${posts.map(post => `
-                  <div class="archive-post" data-post-id="${post.id}">
-                    ${post.titulo}
+                  <div class="archive-post" data-id="${post.id}">
+                    <a href="#" class="post-link">${post.titulo}</a>
                   </div>
                 `).join('')}
               </div>
@@ -208,88 +208,87 @@ class BlogManager {
   }
 
   groupPostsByDate() {
-    return this.archivedPosts.reduce((acc, post) => {
+    const hierarchy = {};
+    
+    this.archivedPosts.forEach(post => {
       const date = new Date(post.data);
+      if (isNaN(date)) {
+        console.warn('Post com data inválida:', post.id);
+        return;
+      }
+      
       const year = date.getFullYear();
       const month = date.getMonth() + 1;
       const day = date.getDate();
 
-      if (!acc[year]) acc[year] = {};
-      if (!acc[year][month]) acc[year][month] = {};
-      if (!acc[year][month][day]) acc[year][month][day] = [];
-      if (isNaN(new Date(post.data))) {
-        console.warn('Post com data inválida:', post.id);
-        return acc;
+      if (!hierarchy[year]) hierarchy[year] = {};
+      if (!hierarchy[year][month]) hierarchy[year][month] = {};
+      if (!hierarchy[year][month][day]) hierarchy[year][month][day] = [];
+      
+      hierarchy[year][month][day].push(post);
+    });
+    
+    // Ordenar posts em cada dia (do mais recente para o mais antigo)
+    for (const year in hierarchy) {
+      for (const month in hierarchy[year]) {
+        for (const day in hierarchy[year][month]) {
+          hierarchy[year][month][day].sort((a, b) => 
+            new Date(b.data) - new Date(a.data)
+          );
+        }
       }
-      
-      acc[year][month][day] = acc[year][month][day].sort((a, b) => 
-        new Date(b.data) - new Date(a.data)
-      );
-      
-      return acc;
-    }, {});
+    }
+    
+    return hierarchy;
   }
 
   setupArchiveInteractions() {
+    // Manipuladores para cabeçalhos de ano, mês e dia
     document.querySelectorAll('.archive-header').forEach(header => {
       header.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
         const target = e.currentTarget;
         const icon = target.querySelector('.toggle-icon');
         const collapseDiv = target.nextElementSibling;
         
-        // Alterna a visualização
-        const bsCollapse = new bootstrap.Collapse(collapseDiv, { toggle: true });
+        // Alterna a visualização usando Bootstrap
+        if (collapseDiv) {
+          if (collapseDiv.classList.contains('show')) {
+            collapseDiv.classList.remove('show');
+            icon.classList.remove('bi-caret-down-fill');
+            icon.classList.add('bi-caret-right-fill');
+          } else {
+            collapseDiv.classList.add('show');
+            icon.classList.remove('bi-caret-right-fill');
+            icon.classList.add('bi-caret-down-fill');
+          }
+        }
+      });
+    });
+    
+    // Manipuladores específicos para links de posts
+    document.querySelectorAll('.post-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         
-        // Rotaciona o ícone
-        icon.classList.toggle('bi-caret-right-fill');
-        icon.classList.toggle('bi-caret-down-fill');
+        const postId = parseInt(link.closest('.archive-post').dataset.id);
+        const post = this.archivedPosts.find(p => p.id === postId);
         
-        // Se for um post, exibe o conteúdo
-        if (target.classList.contains('archive-post')) {
-          const postId = target.dataset.postId;
-          const post = this.archivedPosts.find(p => p.id === postId);
+        if (post) {
           this.showArchivedPost(post);
         }
       });
     });
   }
 
-  renderArchiveHierarchy() {
-    const archiveNav = document.getElementById('archive-nav');
-    let html = '';
-  
-    for (const [year, months] of Object.entries(this.archivedPostsByDate)) {
-      html += `<div class="archive-year">🗓️ ${year}</div>`;
-      
-      for (const [month, days] of Object.entries(months)) {
-        html += `<div class="archive-month">📅 ${this.getMonthName(month)}</div>`;
-        
-        for (const [day, posts] of Object.entries(days)) {
-          html += `<div class="archive-day">📌 ${day}</div>`;
-          
-          // Adiciona links clicáveis com títulos
-          posts.forEach(post => {
-            html += `
-              <div class="archive-post" data-id="${post.id}">
-                <a href="#" class="post-link">📝 ${post.titulo}</a>
-              </div>
-            `;
-          });
-        }
-      }
-    }
-    archiveNav.innerHTML = html;
-    
-    // Novo: Adiciona eventos aos links
-    this.setupPostLinks();
-  }
-  
-
   showArchivedPost(post) {
     this.renderPosts([post]);
     const offcanvasEl = document.getElementById('postsArchive');
-    const offcanvas = new bootstrap.Offcanvas(offcanvasEl);
-    offcanvas.hide();
+    const bsOffcanvas = new bootstrap.Offcanvas(offcanvasEl);
+    bsOffcanvas.hide();
   }
 
   addNavigationLink() {
@@ -301,23 +300,35 @@ class BlogManager {
     `;
     this.postsContainer.insertAdjacentHTML('beforeend', navLink);
   }
-
 }
 
 
-
-// Inicialização https://discord.com/api/webhooks/1354094422425341952/qJCUPS7BQxtES44Ak_UPbvUfusqY_emnwm54qXVscY3atwNbmgsCgXTlvmXPhQKlJXpJ
+// Inicialização 
 document.addEventListener('DOMContentLoaded', () => new BlogManager());
 
-// Ajuste automático de altura
-function adjustLayout() {
-  const sidenav = document.querySelector('.sidenav');
-  const headerHeight = document.querySelector('header').offsetHeight;
-  
-  if(window.innerWidth > 992) {
-    sidenav.style.height = `calc(100vh - ${headerHeight + 40}px)`;
-  }
-}
 
 window.addEventListener('resize', adjustLayout);
 adjustLayout();
+
+// Função global para ajustar o layout (mencionada no código, mas não definida)
+function adjustLayout() {
+  // Implementação básica para evitar erros
+  const container = document.getElementById('posts-container');
+  if (container) {
+    // Ajustes de layout responsivo podem ser adicionados aqui
+  }
+}
+
+// Funções globais para os botões de like e share
+function toggleLike() {
+  const likeCounter = document.getElementById('likeCounter');
+  if (likeCounter) {
+    const currentCount = parseInt(likeCounter.textContent);
+    likeCounter.textContent = currentCount ? 0 : 1;
+  }
+}
+
+function sharePost() {
+  // Implementação básica
+  alert('Compartilhar post');
+}
