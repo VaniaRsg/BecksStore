@@ -31,8 +31,7 @@ h4 {
 p {
     font-size: 1.1em;
     color: #fff;
-    font-family: 'Times New Roman', Times, serif
-    
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .posttitle {
@@ -87,68 +86,6 @@ p {
     width: 80%;
 }
 
-
-.sidenav {
-    width: 30%;
-    background-color: #202020;
-    border-radius: 5px;
-    box-shadow: 
-    -7px 0 10px #00000095, /* Esquerda */
-    7px 0 10px #00000095,  /* Direita */
-    0 -7px 10px #00000095, /* Topo */
-    0 7px 10px #00000095;  /* Base */
-    top: 20px;
-    position: sticky;
-    margin: 20px;
-    border: #009c9c 0.05em solid;
-    
-}
-
-.list-group-item {
-    text-align: center;
-    font-size: 1.1em;
-    margin-bottom: 10px;
-    padding: 15px 25px;
-    background-color: #202020;
-    background: linear-gradient(#202020, transparent 155%);
-    color: #0000008c;
-    border-color: transparent;
-    outline: 0;
-    cursor: pointer;
-    transition: all 1s ease;
-}
-
-.list-group-item a {
-    color: #d3d3d38c;
-    text-decoration-line: none;
-    
-}
-
-.list-group-item:hover {
-    background-color: #202020;
-    transition: all 1s ease;
-    box-shadow: 
-    -7px 0 10px #00000095, /* Esquerda */
-    7px 0 10px #00000095,  /* Direita */
-    0 -7px 10px #00000095, /* Topo */
-    0 7px 10px #00000095;  /* Base */
-    text-shadow: 0 0px 0px transparent, 
-    0 0 1px #00ffff, 
-    0 0 1px transparent, 
-    0 0 0px #00ffff, 
-    0 0 25px #00ffff, 
-    0 0 0 #00ffff, 
-    0 0 5px #00ffff, 
-    0 0 6px #00ffff;
-    
-}
-
-.sidetitle {
-    padding: 20px;
-    text-align: center;
-    font-size: 1.2em;
-}
-
 .navbar-brand {
     color: #424242;
     text-shadow: 1px 1px 2px #000000;
@@ -176,7 +113,6 @@ p {
       z-index: 1000;
   }
 
-  
   .cyber-nav::after,
   .cyber-nav::before {
     content: '';
@@ -481,3 +417,118 @@ p {
 @media (min-width: 1200px) {
 
 }
+
+
+.text {
+    color: aliceblue;
+}
+
+h3 {
+    font-size: 1.5rem;
+    color:rgb(147, 255, 246);
+    text-shadow: 0 0px 0px transparent, 
+      0 0 1px #00ffff, 
+      0 0 1px transparent, 
+      0 0 0px #00ffff, 
+      0 0 25px #00ffff, 
+      0 0 0 #00ffff, 
+      0 0 5px #00ffff, 
+      0 0 6px #00ffff,
+      -2px 0 5px #00000095, /* Esquerda */
+    2px 0 5px #00000095,  /* Direita */
+    0 -2px 5px #00000095, /* Topo */
+    0 2px 5px #00000095;  /* Base */
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
+
+
+.form-control {
+    background-color: #212121;
+    box-shadow: 
+    -7px 0 10px #00000095, /* Esquerda */
+    7px 0 10px #00000095,  /* Direita */
+    0 -7px 10px #00000095, /* Topo */
+    0 7px 10px #00000095;  /* Base */
+    border: #009c9c 0.01em solid;
+    border-radius: 10px;
+}
+
+.form ::placeholder {
+    color: rgba(255, 255, 255, 0.466);
+}
+
+.form-control:focus {
+    background-color: #181818 !important; 
+    border-color: #00ffff !important; 
+    box-shadow: 0 0px 0px transparent, 
+    0 0 1px #00ffff, 
+    0 0 1px transparent, 
+    0 0 0px #00ffff, 
+    0 0 25px #00ffff, 
+    0 0 0 #00ffff, 
+    0 0 5px #00ffff, 
+    0 0 6px #00ffff;
+    color:white;
+}
+
+.btn-control {color: rgb(156, 156, 156);}
+
+.btn-control:hover {
+    color:#00ffff;
+}
+
+.btn-control:active {
+    color:#00ffff;
+    text-shadow: 0 0px 0px transparent, 
+    0 0 1px #00ffff, 
+    0 0 1px transparent, 
+    0 0 0px #00ffff, 
+    0 0 25px #00ffff, 
+    0 0 0 #00ffff, 
+    0 0 5px #00ffff, 
+    0 0 6px #00ffff;
+}
+
+.form-control {
+    transition: 
+        background-color 0.3s ease-in-out,
+        border-color 0.3s ease-in-out,
+        box-shadow 0.3s ease-in-out;
+}
+
+.form-group {
+    width: 80%;
+    
+}
+
+.contactForm {
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 3%;
+    padding-bottom: 15%;
+    margin-left: 11%;
+}
+
+
+.btn-primary {
+    background-color: #18181800 !important;
+    border-color: var(--clr-one, #00ffff) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+    
+    .btn-primary:hover {
+    background-color: #00ffff !important;
+    border-color: var(--clr-one, #00ffff) !important;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.6) !important;
+    }
+    
+    .btn-primary:active,
+    .btn-primary:focus-visible,
+    .btn-primary:focus:not(:focus-visible) {
+    background-color: #00ffff !important;
+    border-color: var(--clr-one, #00ffff) !important;
+    box-shadow:
+    0 0 20px rgba(0, 255, 255, 0.8),
+    inset 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+    }
