@@ -21,16 +21,23 @@ h3 {
       0 0 25px #00ffff, 
       0 0 0 #00ffff, 
       0 0 5px #00ffff, 
-      0 0 6px #00ffff;
+      0 0 6px #00ffff,
+      -2px 0 5px #00000095, /* Esquerda */
+    2px 0 5px #00000095,  /* Direita */
+    0 -2px 5px #00000095, /* Topo */
+    0 2px 5px #00000095;  /* Base */
     padding-bottom: 20px;
     padding-top: 10px;
-    
 }
 
 p {
     color: white;
     text-align: center;
-    text-shadow: 2px 2px 3px #00ffff;
+    text-shadow: 
+    -7px 0 10px #00000095, /* Esquerda */
+    7px 0 10px #00000095,  /* Direita */
+    0 -7px 10px #00000095, /* Topo */
+    0 7px 10px #00000095;  /* Base */
 }
 
 .form-control {
@@ -62,6 +69,24 @@ p {
     color:white;
 }
 
+.btn-control {color: rgb(156, 156, 156);}
+
+.btn-control:hover {
+    color:#00ffff;
+}
+
+.btn-control:active {
+    color:#00ffff;
+    text-shadow: 0 0px 0px transparent, 
+    0 0 1px #00ffff, 
+    0 0 1px transparent, 
+    0 0 0px #00ffff, 
+    0 0 25px #00ffff, 
+    0 0 0 #00ffff, 
+    0 0 5px #00ffff, 
+    0 0 6px #00ffff;
+}
+
 .form-control {
     transition: 
         background-color 0.3s ease-in-out,
@@ -75,12 +100,16 @@ p {
 }
 
 .contactForm {
-    padding: 15%;
-    margin-left: 10%;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 3%;
+    padding-bottom: 15%;
+    margin-left: 11%;
 }
 
+
 .btn-primary {
-    background-color: #181818 !important;
+    background-color: #18181800 !important;
     border-color: var(--clr-one, #00ffff) !important;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }

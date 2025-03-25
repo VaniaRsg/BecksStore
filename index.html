@@ -52,8 +52,50 @@
                             </div>
                         </div>
             </section>
-            
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+<br><br><br><br><br><br>
+
+
+                    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" class="simple-wave">
+                        <defs>
+                        <!-- Filtro de brilho otimizado -->
+                        <filter id="simpleGlow">
+                            <feGaussianBlur stdDeviation="3" result="blur"/>
+                            <feMerge>
+                            <feMergeNode in="blur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                        </defs>
+                    
+                        <!-- Linha de onda animada -->
+                        <path 
+                        d="M0 40 Q 360 10 720 40 T 1440 40"
+                        fill="none"
+                        stroke="#00ffff"
+                        stroke-width="1"
+                        stroke-linecap="round"
+                        filter="url(#simpleGlow)">
+                        
+                        <!-- Animação principal da onda -->
+                        <animate 
+                            attributeName="d"
+                            dur="8s"
+                            repeatCount="indefinite"
+                            values="
+                            M0 40 Q 360 10 720 40 T 1440 40;
+                            M0 40 Q 360 70 720 40 T 1440 40;
+                            M0 40 Q 360 10 720 40 T 1440 40"
+                            keyTimes="0;0.5;1"
+                            calcMode="spline"
+                            keySplines="0.42 0 0.58 1; 0.42 0 0.58 1"/>
+                        </path>
+                    </svg>
+
+
+<br><br><br><br><br><br><br>
+
 
             <section id="form" class="form">
                 <div class="container">
@@ -79,16 +121,23 @@
                                     <input type="email" class="form-control" name="email" id="email" placeholder="Email">
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
-                                </div>
-                            </div>
+                            
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <textarea name="message" class="form-control" id="message" cols="30" rows="8" placeholder="Message"></textarea>
                                 </div>
                             </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-control">
+                                        <input type="file" hidden>
+                                        <span class="btn-control">Choose your file</span>
+                                      </label>
+                                </div>
+                            </div>
+                            
+                            <br>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <input type="submit" value="Send Message" class="btn btn-primary">
@@ -101,6 +150,11 @@
             </section>
 
 
+
+
+
+
+            
         </main>
 
     <script>
