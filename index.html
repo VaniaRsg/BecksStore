@@ -10,6 +10,7 @@
     </head>
 
     <body>
+        
     <header>
         <nav class="navbar navbar-expand-md cyber-nav">
             <div class="container-fluid">
@@ -27,8 +28,22 @@
               </div>
             </div>
           </nav>
+          
+          
+          <div class="offcanvas offcanvas-start cyber-nav" id="postsArchive" tabindex="-1">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title">Arquivo de Posts</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <div id="archive-nav" class="archive-nav">
+                <!-- Hierarquia será gerada via JavaScript -->
+              </div>
+            </div>
+          </div>
     </header>
 
+    
         <main>
             <section id="home" class="home">
                 <h1>Beck's Store</div>
@@ -47,7 +62,7 @@
 
                     <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" class="simple-wave">
                         <defs>
-                        <!-- Filtro de brilho otimizado -->
+                        
                         <filter id="simpleGlow">
                             <feGaussianBlur stdDeviation="3" result="blur"/>
                             <feMerge>
@@ -57,7 +72,6 @@
                         </filter>
                         </defs>
                     
-                        <!-- Linha de onda animada -->
                         <path 
                         d="M0 40 Q 360 10 720 40 T 1440 40"
                         fill="none"
@@ -65,8 +79,7 @@
                         stroke-width="1"
                         stroke-linecap="round"
                         filter="url(#simpleGlow)">
-                        
-                        <!-- Animação principal da onda -->
+                       
                         <animate 
                             attributeName="d"
                             dur="8s"
@@ -89,7 +102,7 @@
                 <div class="container">
                     <div class="contact-wrap">
                         <h3 class="mb-4 text-center">Contact Us!</h3>
-                        <p>Send your message here</p>
+                        <h5>Send your message here</h5>
                     </div>
     
                     <form method="POST" id="contactForm" name="contactForm" class="contactForm">

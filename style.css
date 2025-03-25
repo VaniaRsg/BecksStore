@@ -28,8 +28,15 @@ h4 {
     padding-bottom: 20px;
 }
 
+h5 {
+    font-size: 1em;
+    text-align: center;
+    padding-bottom: 20px;
+    color: #c9c9c9;
+}
+
 p {
-    font-size: 1.1em;
+    font-size: 1.05em;
     color: #fff;
     font-family: 'Times New Roman', Times, serif;
 }
@@ -208,10 +215,10 @@ p {
   }
   
   .navbar-toggler {
-    border: 1px solid rgba(76,190,255,0.3) !important;
+    border: 1px solid rgba(0, 255, 255, 0.3) !important;
   }
   .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(76, 190, 255, 0.8)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(0, 255, 255, 0.8)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
   }
 
 .btn {
@@ -532,3 +539,87 @@ h3 {
     0 0 20px rgba(0, 255, 255, 0.8),
     inset 0 4px 8px rgba(0, 0, 0, 0.3) !important;
     }
+
+    /* Menu permanente estático */
+.offcanvas-start {
+    width: 15% !important;
+    height: 100vh;
+    border-right: 2px solid #72727255 !important;
+    transition: none !important;
+    z-index: 900;
+    box-shadow:
+    7px 7px 10px rgba(0, 0, 0, 0.562),
+    inset 0 4px 8px rgba(95, 95, 95, 0.3) !important;
+}
+
+.offcanvas-start .offcanvas-header,
+.offcanvas-start .offcanvas-body {
+    display: block !important; /* Restaura a exibição */
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Ícone indicativo fixo */
+.offcanvas-start::after {
+    position: fixed;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #00ffff;
+    font-size: 1.2rem;
+    animation: static-pulse 2s infinite;
+}
+
+@keyframes static-pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+}
+
+/* Ajuste do conteúdo principal */
+main {
+    margin-left: 50px;
+}
+
+.archive-nav {
+    padding-left: 0.5rem;
+  }
+  
+  .archive-header {
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+  }
+  
+  .archive-header:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .toggle-icon {
+    margin-right: 0.5rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .archive-year,
+  .archive-month,
+  .archive-day {
+    margin-left: 1rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .archive-posts {
+    margin-left: 1.5rem;
+  }
+  
+  .archive-post {
+    padding: 0.5rem;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+  }
+  
+  .archive-post:hover {
+    opacity: 1;
+  }
+  
