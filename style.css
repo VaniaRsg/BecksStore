@@ -540,7 +540,8 @@ h3 {
     inset 0 4px 8px rgba(0, 0, 0, 0.3) !important;
     }
 
-    /* Menu permanente estático */
+
+
 .offcanvas-start {
     width: 15% !important;
     height: 100vh;
@@ -556,6 +557,7 @@ h3 {
 .offcanvas-start .offcanvas-body {
     display: block !important; /* Restaura a exibição */
     opacity: 1 !important;
+    margin-top: 90px;
     visibility: visible !important;
 }
 
