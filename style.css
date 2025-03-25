@@ -577,51 +577,31 @@ h3 {
     50% { opacity: 0.8; }
 }
 
-/* Ajuste do conteúdo principal */
-main {
-    margin-left: 50px;
-}
-
-.archive-nav {
-    padding-left: 0.5rem;
+.archive-year {
+    color: #00ffff;
+    font-weight: bold;
+    padding: 10px 0;
+    border-bottom: 1px solid #009c9c;
   }
   
-  .archive-header {
-    cursor: pointer;
-    padding: 0.5rem;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-  }
-  
-  .archive-header:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-  
-  .toggle-icon {
-    margin-right: 0.5rem;
-    transition: transform 0.3s ease;
-  }
-  
-  .archive-year,
-  .archive-month,
-  .archive-day {
-    margin-left: 1rem;
-    border-left: 1px solid rgba(255, 255, 255, 0.2);
-  }
-  
-  .archive-posts {
-    margin-left: 1.5rem;
+  .archive-month {
+    padding-left: 20px;
+    margin: 8px 0;
   }
   
   .archive-post {
-    padding: 0.5rem;
-    cursor: pointer;
-    opacity: 0.8;
-    transition: opacity 0.2s ease;
+    padding: 5px 0;
+    margin-left: 15px;
   }
   
-  .archive-post:hover {
-    opacity: 1;
+  .archive-link {
+    color: #8ad8d8 !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .archive-link:hover {
+    color: #00ffff !important;
+    text-shadow: 0 0 8px rgba(0,255,255,0.5);
   }
   

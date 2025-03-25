@@ -2,7 +2,7 @@
     "posts": [
       {
         "id": 1,
-        "data": "2025-03-22",
+        "data": "2025-03-12",
         "titulo": "!Beck's! 20+ Dress",
         "imagem": "images/20dress.jpg",
         "marcas": [
@@ -25,7 +25,7 @@
       },
       {
         "id": 2,
-        "data": "2025-03-22",
+        "data": "2025-01-02",
         "titulo": "!Beck's! 20+ Dress",
         "imagem": "images/20dress.jpg",
         "marcas": [
@@ -48,7 +48,7 @@
       },
       {
         "id": 3,
-        "data": "2025-03-22",
+        "data": "2024-04-12",
         "titulo": "!Beck's! 20+ Dress",
         "imagem": "images/20dress.jpg",
         "marcas": [

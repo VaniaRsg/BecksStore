@@ -12,6 +12,15 @@ class BlogManager {
     try {
       const response = await fetch('posts/data.json');
       const data = await response.json();
+      const validPosts = data.posts.filter(post => {
+        const postDate = new Date(post.data);
+        const today = new Date();
+        
+        // Considera posts até 23:59:59 do dia atual
+        today.setHours(23, 59, 59, 999);
+        
+        return postDate <= today && !isNaN(postDate);
+      });
       
       // Ordena os posts por data (do mais recente para o mais antigo)
       const sortedPosts = data.posts.sort((a, b) => 
@@ -29,6 +38,22 @@ class BlogManager {
       console.error('Erro ao carregar posts:', error);
     }
   }
+
+  setupPostLinks() {
+  document.querySelectorAll('.post-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const postId = parseInt(link.closest('.archive-post').dataset.id);
+      const selectedPost = this.archivedPosts.find(p => p.id === postId);
+      
+      if (selectedPost) {
+        // Remove o post atual e exibe o selecionado
+        this.postsContainer.innerHTML = '';
+        this.renderPosts([selectedPost]);
+      }
+    });
+  });
+}
 
   renderPosts(posts) {
     this.postsContainer.innerHTML = posts.map(post => `
@@ -195,6 +220,10 @@ class BlogManager {
       if (!acc[year]) acc[year] = {};
       if (!acc[year][month]) acc[year][month] = {};
       if (!acc[year][month][day]) acc[year][month][day] = [];
+      if (isNaN(new Date(post.data))) {
+        console.warn('Post com data inválida:', post.id);
+        return acc;
+      }
       
       acc[year][month][day] = acc[year][month][day].sort((a, b) => 
         new Date(b.data) - new Date(a.data)
@@ -228,6 +257,37 @@ class BlogManager {
     });
   }
 
+  renderArchiveHierarchy() {
+    const archiveNav = document.getElementById('archive-nav');
+    let html = '';
+  
+    for (const [year, months] of Object.entries(this.archivedPostsByDate)) {
+      html += `<div class="archive-year">🗓️ ${year}</div>`;
+      
+      for (const [month, days] of Object.entries(months)) {
+        html += `<div class="archive-month">📅 ${this.getMonthName(month)}</div>`;
+        
+        for (const [day, posts] of Object.entries(days)) {
+          html += `<div class="archive-day">📌 ${day}</div>`;
+          
+          // Adiciona links clicáveis com títulos
+          posts.forEach(post => {
+            html += `
+              <div class="archive-post" data-id="${post.id}">
+                <a href="#" class="post-link">📝 ${post.titulo}</a>
+              </div>
+            `;
+          });
+        }
+      }
+    }
+    archiveNav.innerHTML = html;
+    
+    // Novo: Adiciona eventos aos links
+    this.setupPostLinks();
+  }
+  
+
   showArchivedPost(post) {
     this.renderPosts([post]);
     const offcanvasEl = document.getElementById('postsArchive');
@@ -235,6 +295,15 @@ class BlogManager {
     offcanvas.hide();
   }
 
+  addNavigationLink() {
+    const navLink = `
+      <div class="post-nav">
+        <button class="prev">◀</button>
+        <button class="next">▶</button>
+      </div>
+    `;
+    this.postsContainer.insertAdjacentHTML('beforeend', navLink);
+  }
 
 }
 
