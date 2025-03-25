@@ -147,6 +147,101 @@
                                 </div>
                             </div>
                         </div>
+                        <script>
+                            document.getElementById('contactForm').addEventListener('submit', async (e) => {
+                                e.preventDefault();
+                                
+                                const form = e.target;
+                                const formContainer = form.closest('.col-md-12');
+                                const fileInput = document.querySelector('input[type="file"]');
+                                const arquivo = fileInput.files[0];
+
+                                // Elementos de mensagem
+                                const errorDiv = document.createElement('div');
+                                const successDiv = document.createElement('div');
+                                errorDiv.className = 'message error';
+                                successDiv.className = 'message success';
+
+                                // Limpar mensagens anteriores
+                                document.querySelectorAll('.message').forEach(msg => msg.remove());
+
+                                // Validação básica dos campos
+                                const camposObrigatorios = {
+                                    name: 'Nome',
+                                    slname: 'SL Name',
+                                    email: 'E-mail',
+                                    message: 'Mensagem'
+                                };
+
+                                for (const [id, label] of Object.entries(camposObrigatorios)) {
+                                    const valor = document.getElementById(id).value.trim();
+                                    if (!valor) {
+                                    errorDiv.textContent = `⚠️ O campo ${label} é obrigatório!`;
+                                    formContainer.prepend(errorDiv);
+                                    setTimeout(() => errorDiv.remove(), 3000);
+                                    return;
+                                    }
+                                }
+
+                                // Validação de e-mail
+                                const email = document.getElementById('email').value.trim();
+                                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                                    errorDiv.textContent = '⚠️ Por favor, insira um e-mail válido!';
+                                    formContainer.prepend(errorDiv);
+                                    setTimeout(() => errorDiv.remove(), 3000);
+                                    return;
+                                }
+
+                                // Validação de arquivo (se enviado)
+                                if (arquivo) {
+                                    // Verificar tipo de arquivo
+                                    const tiposPermitidos = /image\/(png|jpeg|gif|webp)/;
+                                    if (!tiposPermitidos.test(arquivo.type)) {
+                                    errorDiv.textContent = '⚠️ Por favor, selecione apenas imagens (PNG, JPG, GIF)!';
+                                    formContainer.prepend(errorDiv);
+                                    setTimeout(() => errorDiv.remove(), 3000);
+                                    return;
+                                    }
+
+                                    // Verificar tamanho do arquivo (8MB máximo)
+                                    if (arquivo.size > 8 * 1024 * 1024) {
+                                    errorDiv.textContent = '⚠️ O arquivo é muito grande (máximo 8MB)!';
+                                    formContainer.prepend(errorDiv);
+                                    setTimeout(() => errorDiv.remove(), 3000);
+                                    return;
+                                    }
+                                }
+
+                                // Preparar dados para o Discord
+                                const payload = {
+                                    content: `📨 **Nova mensagem:**\n**Nome:** ${document.getElementById('name').value}\n**SL Name:** ${document.getElementById('slname').value}\n**Email:** ${email}\n**Mensagem:** ${document.getElementById('message').value}`
+                                };
+
+                                const formData = new FormData();
+                                formData.append('payload_json', JSON.stringify(payload));
+                                if (arquivo) formData.append('file', arquivo);
+
+                                try {
+                                    const response = await fetch('https://discord.com/api/webhooks/1354094422425341952/qJCUPS7BQxtES44Ak_UPbvUfusqY_emnwm54qXVscY3atwNbmgsCgXTlvmXPhQKlJXpJ', {
+                                    method: 'POST',
+                                    body: formData
+                                    });
+
+                                    if (response.ok) {
+                                    successDiv.textContent = '✅ Mensagem enviada com sucesso!';
+                                    formContainer.prepend(successDiv);
+                                    form.reset();
+                                    setTimeout(() => successDiv.remove(), 5000);
+                                    } else {
+                                    throw new Error('Erro no servidor');
+                                    }
+                                } catch (error) {
+                                    errorDiv.textContent = '⚠️ Erro ao enviar. Tente novamente mais tarde.';
+                                    formContainer.prepend(errorDiv);
+                                    setTimeout(() => errorDiv.remove(), 3000);
+                                }
+                                });
+                          </script>
                     </form>
                 </div>
             </section>

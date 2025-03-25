@@ -605,3 +605,81 @@ h3 {
     text-shadow: 0 0 8px rgba(0,255,255,0.5);
   }
   
+  /* Hierarquia do Archive */
+.archive-year {
+    color: #00ffff;
+    font-weight: bold;
+    padding: 10px 0;
+    border-bottom: 1px solid #009c9c;
+  }
+  
+  .archive-month {
+    padding-left: 20px;
+    margin: 8px 0;
+  }
+  
+  .archive-post {
+    padding: 5px 0;
+    margin-left: 15px;
+  }
+  
+  .archive-link {
+    color: #8ad8d8 !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .archive-link:hover {
+    color: #00ffff !important;
+    text-shadow: 0 0 8px rgba(0,255,255,0.5);
+  }
+  
+  .btn-link {
+    color: #00ffff !important;
+    padding: 3px 0;
+  }
+  
+  .btn-link:hover {
+    text-decoration: none;
+    filter: brightness(120%);
+  }
+
+  .message {
+    padding: 15px;
+    margin: 10px auto;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 600px;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+   
+  .success {
+    background: #282828;
+    color: #00ff3c;
+    border: 1px solid #00ffff;
+    text-shadow: 1px 1px 1px #000000;
+    border-radius: 30px;
+  }
+  
+  .error {
+    background: #282828;
+    color: #ff0019;
+    border: 1px solid #00ffff;
+    text-shadow: 1px 1px 1px #000000;
+    border-radius: 30px;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px) translateX(-50%); }
+    to { opacity: 1; transform: translateY(0) translateX(-50%); }
+  }
+  

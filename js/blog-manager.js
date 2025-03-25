@@ -130,9 +130,6 @@ class BlogManager {
     this.addNavigationLink();
   }
 
-
-
-
   
   setupEventListeners() {
     const container = this.postsContainer;
@@ -309,7 +306,7 @@ class BlogManager {
 
 
 
-// Inicialização
+// Inicialização https://discord.com/api/webhooks/1354094422425341952/qJCUPS7BQxtES44Ak_UPbvUfusqY_emnwm54qXVscY3atwNbmgsCgXTlvmXPhQKlJXpJ
 document.addEventListener('DOMContentLoaded', () => new BlogManager());
 
 // Ajuste automático de altura

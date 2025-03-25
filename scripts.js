@@ -109,3 +109,4 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     if (errorElement) errorElement.remove();
   });
 });
+
