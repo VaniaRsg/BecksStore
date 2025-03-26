@@ -33,12 +33,12 @@ class BlogManager {
       this.archivedPosts = sortedPosts.slice(1); // Restante arquivado
       
       this.renderPosts(this.activePosts);
-      
-      this.buildArchiveHierarchy(); // Adicione esta linha
+      this.buildArchiveHierarchy();
+      this.renderLastPosts(); // Adicione esta linha
       } catch (error) {
       console.error('Erro ao carregar posts:', error);
-    }
   }
+}
 
   setupPostLinks() {
     document.querySelectorAll('.post-link').forEach(link => {
@@ -131,6 +131,52 @@ class BlogManager {
     this.addNavigationLink();
   }
 
+ 
+  renderLastPosts() {
+    const lastPostsContainer = document.querySelector('.lastposts');
+    if (!lastPostsContainer) return;
+  
+    const lastTwoPosts = this.archivedPosts.slice(0, 2);
+    const currentPost = this.activePosts[0];
+  
+    let html = `
+      <div class="current-post mb-4">
+        <h6 class="sidebar-title">Post Atual:</h6>
+        <div class="sidebar-post" data-id="${currentPost.id}">
+          <a href="#" class="post-link">
+            <img src="${currentPost.imagem}" class="sidebar-thumb" alt="${currentPost.titulo}">
+            <h6 class="sidebar-post-title">${currentPost.titulo}</h6>
+          </a>
+          <p class="sidebar-excerpt">${this.getExcerpt(currentPost.conteudo, 10)}</p>
+        </div>
+      </div>
+  
+      <div class="last-posts">
+        <h6 class="sidebar-title">Posts Recentes:</h6>
+        ${lastTwoPosts.map(post => `
+          <div class="sidebar-post" data-id="${post.id}">
+            <a href="#" class="post-link">
+              <img src="${post.imagem}" class="sidebar-thumb" alt="${post.titulo}">
+              <h6 class="sidebar-post-title">${post.titulo}</h6>
+            </a>
+            <p class="sidebar-excerpt">${this.getExcerpt(post.conteudo, 10)}</p>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  
+    lastPostsContainer.innerHTML = html;
+  }
+  
+  getExcerpt(content, maxWords) {
+    const text = Array.isArray(content) 
+      ? content.join(' ') 
+      : content;
+    
+    const words = text.split(' ').slice(0, maxWords);
+    return words.join(' ') + (words.length >= maxWords ? '...' : '');
+  }
+  
   
   setupEventListeners() {
     const container = this.postsContainer;
