@@ -6,6 +6,7 @@ class BlogManager {
     this.activePosts = []; // Lista com apenas o último post
     this.loadPosts();
     this.setupEventListeners();
+    this.loadInteractions();
   }
 
   async loadPosts() {
@@ -159,6 +160,8 @@ class BlogManager {
     const hierarchy = this.groupPostsByDate();
     
     let html = '';
+    
+    // Iterar sobre os anos
     for (const [year, months] of Object.entries(hierarchy)) {
       html += `
         <div class="archive-year">
@@ -168,43 +171,51 @@ class BlogManager {
           </div>
           <div class="archive-months collapse">
       `;
-      
+  
+      // Iterar sobre os meses
       for (const [month, days] of Object.entries(months)) {
-        const monthName = new Date(0, month - 1).toLocaleString('pt-BR', { month: 'long' });
+        const monthName = new Date(year, month - 1).toLocaleString('pt-BR', { month: 'long' });
         html += `
           <div class="archive-month">
-            <div class="archive-header" data-month="${month}" data-year="${year}">
+            <div class="archive-header" data-month="${month}">
               <i class="bi bi-caret-right-fill toggle-icon"></i>
               ${monthName}
             </div>
             <div class="archive-days collapse">
         `;
-
+  
+        // Iterar sobre os dias
         for (const [day, posts] of Object.entries(days)) {
           html += `
             <div class="archive-day">
-              <div class="archive-header" data-day="${day}" data-month="${month}" data-year="${year}">
-                <i class="bi bi-caret-right-fill toggle-icon"></i>
-                ${day}
+              <div class="archive-header" data-day="${day}">
+                <i class="">- </i>
+                ${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}
               </div>
-              <div class="archive-posts collapse">
-                ${posts.map(post => `
-                  <div class="archive-post" data-id="${post.id}">
-                    <a href="#" class="post-link">${post.titulo}</a>
-                  </div>
-                `).join('')}
-              </div>
-            </div>
+              <div class="archive-posts collapse show">
           `;
+  
+          // Adicionar posts
+          posts.forEach(post => {
+            html += `
+              <div class="archive-post" data-id="${post.id}">
+                <a href="#" class="post-link">${post.titulo}</a>
+              </div>
+            `;
+          });
+  
+          html += `</div></div>`; // Fechar day
         }
-
-        html += `</div></div>`;
+  
+        html += `</div></div>`; // Fechar month
       }
-      html += `</div></div>`;
+  
+      html += `</div></div>`; // Fechar year
     }
     
     archiveNav.innerHTML = html;
     this.setupArchiveInteractions();
+    this.setupPostLinks(); // Adicionar esta linha
   }
 
   groupPostsByDate() {
@@ -212,30 +223,37 @@ class BlogManager {
     
     this.archivedPosts.forEach(post => {
       const date = new Date(post.data);
-      if (isNaN(date)) {
-        console.warn('Post com data inválida:', post.id);
-        return;
-      }
-      
+      if (isNaN(date)) return;
+  
       const year = date.getFullYear();
       const month = date.getMonth() + 1;
       const day = date.getDate();
-
+  
       if (!hierarchy[year]) hierarchy[year] = {};
       if (!hierarchy[year][month]) hierarchy[year][month] = {};
       if (!hierarchy[year][month][day]) hierarchy[year][month][day] = [];
       
       hierarchy[year][month][day].push(post);
     });
-    
-    // Ordenar posts em cada dia (do mais recente para o mais antigo)
+  
+    // Ordenar a hierarquia
     for (const year in hierarchy) {
+      const months = hierarchy[year];
+      hierarchy[year] = Object.keys(months)
+        .sort((a, b) => b - a)
+        .reduce((sorted, key) => {
+          sorted[key] = months[key];
+          return sorted;
+        }, {});
+  
       for (const month in hierarchy[year]) {
-        for (const day in hierarchy[year][month]) {
-          hierarchy[year][month][day].sort((a, b) => 
-            new Date(b.data) - new Date(a.data)
-          );
-        }
+        const days = hierarchy[year][month];
+        hierarchy[year][month] = Object.keys(days)
+          .sort((a, b) => b - a)
+          .reduce((sorted, key) => {
+            sorted[key] = days[key];
+            return sorted;
+          }, {});
       }
     }
     
@@ -293,13 +311,124 @@ class BlogManager {
 
   addNavigationLink() {
     const navLink = `
-      <div class="post-nav">
-        <button class="prev">◀</button>
-        <button class="next">▶</button>
-      </div>
+      
     `;
     this.postsContainer.insertAdjacentHTML('beforeend', navLink);
   }
+
+  loadInteractions() {
+    this.interactions = JSON.parse(localStorage.getItem('blogInteractions')) || {
+      likes: {},
+      comments: {},
+      shares: {}
+    };
+  }
+
+  toggleLike(postId) {
+    if (!this.interactions.likes[postId]) {
+      this.interactions.likes[postId] = 0;
+    }
+    
+    const currentCount = this.interactions.likes[postId];
+    const newCount = currentCount === 0 ? 1 : 0;
+    
+    this.interactions.likes[postId] = newCount;
+    localStorage.setItem('blogInteractions', JSON.stringify(this.interactions));
+    
+    // Atualizar visualização
+    const likeBtn = document.querySelector(`[data-postid="${postId}"] .like-btn`);
+    if (likeBtn) {
+      likeBtn.querySelector('i').style.color = newCount ? '#ff0000' : '';
+    }
+  }
+  
+  // Novo método para comentários
+  setupCommentSystem(postId) {
+    const commentForm = document.getElementById(`commentForm-${postId}`);
+    const commentsContainer = document.getElementById(`comments-${postId}`);
+  
+    if (commentForm) {
+      commentForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const commentText = e.target.comment.value.trim();
+        
+        if (commentText) {
+          this.addComment(postId, commentText);
+          e.target.comment.value = '';
+        }
+      });
+    }
+  }
+  
+  addComment(postId, text) {
+    if (!this.interactions.comments[postId]) {
+      this.interactions.comments[postId] = [];
+    }
+    
+    this.interactions.comments[postId].push({
+      text,
+      date: new Date().toISOString(),
+      user: 'Usuário' // Poderia implementar login depois
+    });
+    
+    localStorage.setItem('blogInteractions', JSON.stringify(this.interactions));
+    this.renderComments(postId);
+  }
+  
+  renderComments(postId) {
+    const container = document.getElementById(`comments-${postId}`);
+    if (!container) return;
+  
+    const comments = this.interactions.comments[postId] || [];
+    container.innerHTML = comments.map((comment, index) => `
+      <div class="comment mb-3">
+        <div class="d-flex align-items-center">
+          <i class="bi bi-person-circle me-2"></i>
+          <strong>${comment.user}</strong>
+          <small class="ms-2 text-muted">${new Date(comment.date).toLocaleDateString('pt-BR')}</small>
+        </div>
+        <p class="mt-1">${comment.text}</p>
+        ${index < comments.length - 1 ? '<hr>' : ''}
+      </div>
+    `).join('');
+  }
+
+  async sharePost(postId) {
+  try {
+    const post = [...this.activePosts, ...this.archivedPosts].find(p => p.id === postId);
+    const shareData = {
+      title: post.titulo,
+      text: post.conteudo.substring(0, 100) + '...',
+      url: window.location.href + `?post=${postId}`
+    };
+
+    if (navigator.share) {
+      await navigator.share(shareData);
+    } else {
+      // Fallback para redes sociais
+      const socialContainer = document.getElementById(`socialShare-${postId}`);
+      if (socialContainer) {
+        socialContainer.innerHTML = `
+          <a href="https://facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareData.url)}" 
+             target="_blank" class="btn btn-sm btn-primary me-2">
+            <i class="bi bi-facebook"></i>
+          </a>
+          <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(shareData.text)}&url=${encodeURIComponent(shareData.url)}" 
+             target="_blank" class="btn btn-sm btn-info me-2">
+            <i class="bi bi-twitter"></i>
+          </a>
+          <button onclick="navigator.clipboard.writeText('${shareData.url}')" 
+                  class="btn btn-sm btn-secondary">
+            <i class="bi bi-link-45deg"></i>
+          </button>
+        `;
+        socialContainer.classList.remove('d-none');
+      }
+    }
+  } catch (err) {
+    console.error('Erro ao compartilhar:', err);
+  }
+}
 }
 
 
@@ -310,9 +439,9 @@ document.addEventListener('DOMContentLoaded', () => new BlogManager());
 window.addEventListener('resize', adjustLayout);
 adjustLayout();
 
-// Função global para ajustar o layout (mencionada no código, mas não definida)
+// Função global para ajustar o layout 
 function adjustLayout() {
-  // Implementação básica para evitar erros
+  
   const container = document.getElementById('posts-container');
   if (container) {
     // Ajustes de layout responsivo podem ser adicionados aqui
@@ -320,15 +449,4 @@ function adjustLayout() {
 }
 
 // Funções globais para os botões de like e share
-function toggleLike() {
-  const likeCounter = document.getElementById('likeCounter');
-  if (likeCounter) {
-    const currentCount = parseInt(likeCounter.textContent);
-    likeCounter.textContent = currentCount ? 0 : 1;
-  }
-}
 
-function sharePost() {
-  // Implementação básica
-  alert('Compartilhar post');
-}

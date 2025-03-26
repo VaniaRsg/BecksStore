@@ -15,6 +15,11 @@ body{
     color: #ffffff;
 }
 
+main {
+    margin-left: 15%;
+    justify-content: center; 
+}
+
 section {
     scroll-margin-top: 76px; 
 }
@@ -52,7 +57,7 @@ h4 {
 }
 
 h5 {
-    font-size: 1.3em;
+    font-size: 1em;
     text-align: left;
     color: #ffffff;
 }
@@ -100,6 +105,7 @@ button:focus {
       top: 0;
       left: 0;
       z-index: 1000;
+      padding: 0 15px;
 }
 .cyber-nav::after,
 .cyber-nav::before {
@@ -207,7 +213,7 @@ button:focus {
 .offcanvas-start .offcanvas-body {
     display: block !important; /* Restaura a exibição */
     opacity: 1 !important;
-    margin-top: 90px;
+    margin-top: 70px;
     visibility: visible !important;
 }
 .offcanvas-start::after {
@@ -226,39 +232,16 @@ button:focus {
 .archive-year {
     color: #00ffff;
     font-weight: bold;
-    padding: 10px 0;
-    border-bottom: 1px solid #009c9c;
-} 
-.archive-month {
-    padding-left: 20px;
-    margin: 8px 0;
-} 
-.archive-post {
-    padding: 5px 0;
-    margin-left: 15px;
-}
-.archive-link {
-    color: #8ad8d8 !important;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-.archive-link:hover {
-    color: #00ffff !important;
-    text-shadow: 0 0 8px rgba(0,255,255,0.5);
-}
-.archive-year {
-    color: #00ffff;
-    font-weight: bold;
-    padding: 10px 0;
     border-bottom: 1px solid #009c9c;
 }
 .archive-month {
-    padding-left: 20px;
-    margin: 8px 0;
+    margin-left: 20px;
 } 
-.archive-post {
-    padding: 5px 0;
+.archive-day {
     margin-left: 15px;
+}
+.archive-post {
+    margin-left: 10px;
 }
 .archive-link {
     color: #8ad8d8 !important;
@@ -605,33 +588,188 @@ button:focus {
 /* ------------------------RESPONSIVIDADE---------------------------- */
 /* ------------------------------------------------------------------ */
 
-  /* Extra small devices (phones, 600px and down) */
-@media (max-width: 400px) {
-    .instagram-btn {
-        padding: 2px;
+/* ------------------------------------------------------------------ */
+/* ------------------------RESPONSIVIDADE---------------------------- */
+/* ------------------------------------------------------------------ */
+
+/* Telas médias (tablets, 992px para baixo) */
+@media (max-width: 992px) {
+    main {
+      margin-left: 15%;
     }
-    .counter {
-        display: none;
+  
+    .cyber-nav {
+      padding: 0 15px;
+    }
+  
+    .cyber-link {
+      padding: 10px 15px !important;
+      font-size: 0.9em;
+    }
+    
+    h1 {
+      font-size: 3.5em;
+      padding-top: 120px;
+    }
+  
+    h3 {
+      font-size: 1.3rem;
+    }
+  
+    .btn {
+      font-size: 0.9em;
+      padding: 8px 15px;
+    }
+  }
+  
+  /* Telas pequenas (celulares, 768px para baixo) */
+  @media (max-width: 768px) {
+    main {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  
+    .offcanvas-start {
+      width: 100% !important;
+      height: auto;
+      position: static;
+      transform: none !important;
+      box-shadow: none !important;
     }
 
-}
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media (min-width: 600px) {
-
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media (min-width: 768px) {
-
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media (min-width: 992px) {
-
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media (min-width: 1200px) {
-
-}
+    .offcanvas-start .offcanvas-header,
+    .offcanvas-start .offcanvas-body {
+        margin-top: 10px;
+    }
+  
+    .navbar-collapse {
+      background: #242424;
+      margin-top: 10px;
+    }
+  
+    .cyber-nav {
+      position: relative;
+      padding: 10px;
+    }
+  
+    .cyber-link {
+      width: 100%;
+      margin: 5px 0;
+      text-align: center;
+    }
+  
+    .card {
+      margin: 10px auto;
+      width: 95%;
+      border-radius: 15px;
+    }
+  
+    .post img {
+      max-width: 100%;
+      height: auto;
+    }
+  
+    h1 {
+      font-size: 2.5em;
+      padding-top: 100px;
+    }
+  
+    h3 {
+      font-size: 1.1rem;
+    }
+  
+    .action-buttons {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+  
+    .btn {
+      font-size: 0.8em;
+      padding: 6px 12px;
+      margin: 3px;
+    }
+  
+    .instagram-controls-container {
+      justify-content: center;
+    }
+  
+    .contactForm {
+      padding: 5%;
+      margin-left: 0;
+    }
+  }
+  
+  
+  /* Ajuste para menu lateral em mobile */
+  @media (max-width: 576px) {
+    main {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    
+      .offcanvas-start {
+        width: 100% !important;
+        height: auto;
+        position: static;
+        transform: none !important;
+        box-shadow: none !important;
+      }
+    
+      .navbar-collapse {
+        background: #242424;
+        margin-top: 10px;
+      }
+    
+      .cyber-nav {
+        position: relative;
+        padding: 10px;
+      }
+    
+      .cyber-link {
+        width: 100%;
+        margin: 5px 0;
+        text-align: center;
+      }
+    
+      .card {
+        margin: 10px auto;
+        width: 95%;
+        border-radius: 15px;
+      }
+    
+      .post img {
+        max-width: 100%;
+        height: auto;
+      }
+    
+      h1 {
+        font-size: 2.5em;
+        padding-top: 100px;
+      }
+    
+      h3 {
+        font-size: 1.1rem;
+      }
+    
+      .action-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+    
+      .btn {
+        font-size: 0.8em;
+        padding: 6px 12px;
+        margin: 3px;
+      }
+    
+      .instagram-controls-container {
+        justify-content: center;
+      }
+    
+      .contactForm {
+        padding: 5%;
+        margin-left: 0;
+      }
+    }

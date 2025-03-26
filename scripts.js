@@ -3,22 +3,6 @@ var scrollSpy = new bootstrap.ScrollSpy(document.body, {
 })
 
 
-  let isLiked = false;
-let likeCount = 0;
-const likeBtn = document.querySelector('.like-btn');
-const likeIcon = likeBtn.querySelector('i');
-
-function toggleLike() {
-  isLiked = !isLiked;
-  likeBtn.classList.toggle('liked');
-  likeCount = isLiked ? likeCount + 1 : likeCount - 1;
-  document.getElementById('likeCounter').textContent = likeCount;
-  
-  // Troca o ícone
-  likeIcon.classList.toggle('bi-heart');
-  likeIcon.classList.toggle('bi-heart-fill');
-}
-
 // Sistema de Compartilhamento
 function sharePost() {
   if (navigator.share) {
