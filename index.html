@@ -29,23 +29,6 @@
               </div>
             </div>
           </nav>
-          
-          
-          <div class="offcanvas offcanvas-start cyber-nav" id="postsArchive" tabindex="-1">
-            <div class="offcanvas-header">
-                <h5>Ultimos Posts</h5>
-                <div class="lastposts"></div>
-
-                <h5 class="offcanvas-title">Arquivo de Posts</h5>
-            </div>
-            <div class="offcanvas-body">
-                <div id="archive-container" class="archive-hierarchy">
-              <div id="archive-nav" class="archive-nav">
-                <!-- Hierarquia será gerada via JavaScript -->
-              </div>
-            </div>
-            </div>
-          </div>
     </header>
 
     
@@ -100,7 +83,7 @@
                     </svg>
 
 
-<br><br><br><br><br><br><br>
+<br><br><br><br><br><br>
 
 
             <section id="form" class="form">
@@ -250,8 +233,61 @@
                 </div>
             </section>
 
+<br><br><br><br><br><br>
 
 
+            <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" class="simple-wave">
+                <defs>
+                
+                <filter id="simpleGlow">
+                    <feGaussianBlur stdDeviation="3" result="blur"/>
+                    <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+                </defs>
+            
+                <path 
+                d="M0 40 Q 360 10 720 40 T 1440 40"
+                fill="none"
+                stroke="#00ffff"
+                stroke-width="1"
+                stroke-linecap="round"
+                filter="url(#simpleGlow)">
+               
+                <animate 
+                    attributeName="d"
+                    dur="8s"
+                    repeatCount="indefinite"
+                    values="
+                    M0 40 Q 360 10 720 40 T 1440 40;
+                    M0 40 Q 360 70 720 40 T 1440 40;
+                    M0 40 Q 360 10 720 40 T 1440 40"
+                    keyTimes="0;0.5;1"
+                    calcMode="spline"
+                    keySplines="0.42 0 0.58 1; 0.42 0 0.58 1"/>
+                </path>
+            </svg>
+
+
+<br><br><br><br><br><br>                
+
+            <section class="archive" id="archive">
+
+            <div class="title"><h5>Ultimos Posts</h5></div>
+                <div class="lastposts"></div>
+
+            <div class="title"><h5 class="offcanvas-title">Arquivo de Posts</h5></div>
+                        
+                <div class="offcanvas-body">
+                    <div id="archive-container" class="archive-hierarchy">
+                      <div id="archive-nav" class="archive-nav">
+                        <!-- Hierarquia será gerada via JavaScript -->
+                      </div>
+                    </div>
+                </div>
+            </section>
 
 
 
