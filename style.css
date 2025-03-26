@@ -237,9 +237,6 @@ button:focus {
 .archive-month {
     margin-left: 20px;
 } 
-.archive-day {
-    margin-left: 15px;
-}
 .archive-post {
     margin-left: 10px;
 }
@@ -301,12 +298,11 @@ button:focus {
     0 -7px 10px #00000095, /* Topo */
     0 7px 10px #00000095;  /* Base */
     border: #009c9c 0.01em solid;
-    position: relative;
     max-width: 800px;
     margin: 20px;
     overflow: hidden;
     border-radius: 20px;
-    
+    justify-content: center;
     
 }
 .post {
