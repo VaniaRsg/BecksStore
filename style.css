@@ -15,15 +15,6 @@ body{
     color: #ffffff;
 }
 
-main {
-    justify-content: center; 
-}
-
-section {
-    scroll-margin-top: 76px; 
-    justify-content: center; 
-}
-
 h1 {
     font-family: 'Great Vibes', cursive;
     font-size: 5em;
@@ -57,9 +48,17 @@ h4 {
 }
 
 h5 {
+    font-size: 1.5em;
+    text-align: left;
+    color: #ffffff;
+    text-align: center;
+}
+
+h6 {
     font-size: 1em;
     text-align: left;
     color: #ffffff;
+    text-align: center;
 }
 
 p {
@@ -229,16 +228,27 @@ button:focus {
     0%, 100% { opacity: 0.3; }
     50% { opacity: 0.8; }
 }*/
-
-.archive {
+.news {
     display: flex;
-    box-shadow: 2px 2px #009c9c;
+    width: 100%;
+    justify-content: center;
+}
+.col-sm-2 {
+    border: #009c9c 0.01em solid;
+    width: 20%;
+}
+.col-lg-6 {
+    width: 80%;
+}
+.archive-title {
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    text-decoration: underline #009c9c;
 }
 .lastposts {
     padding: 5px;
-}
-.title {
-    text-align: center;
 }
 .sidebar-title {
     color: #6c757d;
@@ -250,6 +260,7 @@ button:focus {
     margin-bottom: 1.5rem;
     border-radius: 6px;
     transition: transform 0.2s;
+    
 } 
 .sidebar-thumb {
     width: 100%;
@@ -334,8 +345,6 @@ button:focus {
     margin: 20px;
     overflow: hidden;
     border-radius: 20px;
-    justify-content: center;
-    
 }
 .post {
     width: 80%;
@@ -494,6 +503,13 @@ button:focus {
 /* ------------------------------------------------------------------ */
 /* ------------------------------FORM-------------------------------- */
 /* ------------------------------------------------------------------ */
+.form {
+    display: flex;
+    justify-content: center;
+}
+.contactForm {
+    padding: 10%;
+}
 .form-control {
     background-color: #212121;
     box-shadow: 
@@ -503,6 +519,10 @@ button:focus {
     0 7px 10px #00000095;  /* Base */
     border: #009c9c 0.01em solid;
     border-radius: 10px;
+    transition: 
+        background-color 0.3s ease-in-out,
+        border-color 0.3s ease-in-out,
+        box-shadow 0.3s ease-in-out;
 }
 .form ::placeholder {
     color: rgba(255, 255, 255, 0.466);
@@ -525,6 +545,14 @@ button:focus {
 }
 .btn-control:hover {
     color:#00ffff;
+    text-shadow: 0 0px 0px transparent, 
+    0 0 1px #00ffff, 
+    0 0 1px transparent, 
+    0 0 0px #00ffff, 
+    0 0 25px #00ffff, 
+    0 0 0 #00ffff, 
+    0 0 5px #00ffff, 
+    0 0 6px #00ffff;
 }
 .btn-control:active {
     color:#00ffff;
@@ -537,23 +565,6 @@ button:focus {
     0 0 5px #00ffff, 
     0 0 6px #00ffff;
 }
-.form-control {
-    transition: 
-        background-color 0.3s ease-in-out,
-        border-color 0.3s ease-in-out,
-        box-shadow 0.3s ease-in-out;
-}
-.form-group {
-    width: 80%;
-    
-}
-.contactForm {
-    padding-left: 15%;
-    padding-right: 15%;
-    padding-top: 3%;
-    padding-bottom: 15%;
-    margin-left: 11%;
-}
 .btn-primary {
     background-color: #18181800 !important;
     border-color: var(--clr-one, #00ffff) !important;
@@ -562,7 +573,8 @@ button:focus {
 .btn-primary:hover {
     background-color: #00ffff !important;
     border-color: var(--clr-one, #00ffff) !important;
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.6) !important;
+    box-shadow: 5px 5px 15px rgb(0, 255, 255),
+                -5px -5px 15px rgb(0, 255, 255) !important;
 }   
 .btn-primary:active,
 .btn-primary:focus-visible,
@@ -612,9 +624,6 @@ button:focus {
     to { opacity: 1; transform: translateY(0) translateX(-50%); }
 }
   
-/* ------------------------------------------------------------------ */
-/* ------------------------RESPONSIVIDADE---------------------------- */
-/* ------------------------------------------------------------------ */
 
 /* ------------------------------------------------------------------ */
 /* ------------------------RESPONSIVIDADE---------------------------- */
@@ -631,27 +640,14 @@ button:focus {
       margin-left: 0;
       margin-right: 0;
     }
-  
-    .offcanvas-start {
-      width: 100% !important;
-      height: auto;
-      position: static;
-      transform: none !important;
-      box-shadow: none !important;
-    }
-
-    .offcanvas-start .offcanvas-header,
-    .offcanvas-start .offcanvas-body {
-        margin-top: 10px;
-    }
-  
+    
     .navbar-collapse {
       background: #242424;
       margin-top: 10px;
     }
   
     .cyber-nav {
-      position: relative;
+      position: fixed;
       padding: 10px;
     }
   
@@ -699,26 +695,17 @@ button:focus {
   
     .contactForm {
       padding: 5%;
-      margin-left: 0;
+      
     }
   }
   
-  
-  /* Ajuste para menu lateral em mobile */
+
   @media (max-width: 576px) {
     main {
         margin-left: 0;
         margin-right: 0;
       }
-    
-      .offcanvas-start {
-        width: 100% !important;
-        height: auto;
-        position: static;
-        transform: none !important;
-        box-shadow: none !important;
-      }
-    
+        
       .navbar-collapse {
         background: #242424;
         margin-top: 10px;
@@ -773,6 +760,6 @@ button:focus {
     
       .contactForm {
         padding: 5%;
-        margin-left: 0;
+        
       }
     }
