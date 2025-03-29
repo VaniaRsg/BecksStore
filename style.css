@@ -18,10 +18,32 @@ body{
 h1 {
     font-family: 'Great Vibes', cursive;
     font-size: 5em;
+    font-weight: bold;
     padding-top: 150px;
-    color: #ffffff;
+    color: #00ffff;
     text-align: center;
+    animation: animates 5s linear infinite;
+    position: relative;
+    letter-spacing: 5px;
+    color: #0e3742;
+    line-height: 0.70em;
+    outline: none;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(0, 0, 0, 0.185));
 }
+@keyframes animates {
+    0%, 18%, 20%, 50.1%, 60%, 65.1%, 80%, 90.1%, 92% {
+      color: #0e4239;
+      text-shadow: none;
+    }
+    18.1%, 20.1%, 30%, 50%, 60.1%, 65%, 80.1%, 90%, 92.1%, 100% {
+      color: #fff;
+      text-shadow: 0 0 10px #00ffff,
+                   0 0 20px #00ffff,
+                   0 0 40px #00ffff,
+                   0 0 80px #00ffff,
+                   0 0 160px #00ffff;
+    }
+  }
 
 h3 {
     font-size: 1.5rem;
@@ -77,16 +99,12 @@ button:focus {
     color: aliceblue;
 }
 
-
 /* ----------------------------------------------------------------- */
 /* --------------------------NAVBAR TOP----------------------------- */
 /* ----------------------------------------------------------------- */
 .navbar-brand {
     color: #424242;
     text-shadow: 1px 1px 2px #000000;
-    
-}
-.navbar-brand:hover {
     text-shadow: 2px 2px 10px #00ffff;
     color: #00ffff;
 }
@@ -241,18 +259,19 @@ button:focus {
     width: 80%;
 }
 .archive-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
     text-align: center;
     margin-bottom: 1rem;
     margin-top: 1rem;
-    text-decoration: underline #009c9c;
+    border-bottom: 1px solid #009c9c;
+    font-weight: bold;
+    padding-bottom: 1rem;
 }
 .lastposts {
-    padding: 5px;
+    padding: 2px;
 }
 .sidebar-title {
     color: #6c757d;
-    font-size: 0.9rem;
     margin-bottom: 1rem;
     margin-top: 1rem;
 }
@@ -282,7 +301,14 @@ button:focus {
 .archive-year {
     color: #00ffff;
     font-weight: bold;
+    font-size: 1em;
     border-bottom: 1px solid #009c9c;
+}
+.archive-months {
+    margin-left: 1rem;
+}
+.archive-day {
+    margin-left: 1rem;
 }
 .archive-link {
     color: #8ad8d8 !important;
@@ -295,8 +321,8 @@ button:focus {
 }
 .post-link {
     color: #00caca;
-    font-family: 'Times New Roman', Times, serif
-    
+    font-family: 'Times New Roman', Times, serif;
+    margin-left: 1rem;
 }
 /* ------------------------------------------------------------------ */
 /* --------------------------POST CARD------------------------------- */
@@ -330,7 +356,6 @@ button:focus {
 .posts { 
     display: flex;
     justify-content: center;
-    padding: 10%;
 }
 .card {
     font-size: 1em;
@@ -345,6 +370,10 @@ button:focus {
     margin: 20px;
     overflow: hidden;
     border-radius: 20px;
+    margin: 10px auto;
+    width: 70%;
+    border-radius: 15px;
+    
 }
 .post {
     width: 80%;
@@ -630,136 +659,183 @@ button:focus {
 /* ------------------------------------------------------------------ */
 
 /* Telas médias (tablets, 992px para baixo) */
-@media (max-width: 992px) {
-    
-  }
-  
-  /* Telas pequenas (celulares, 768px para baixo) */
-  @media (max-width: 768px) {
-    main {
-      margin-left: 0;
-      margin-right: 0;
-    }
-    
-    .navbar-collapse {
-      background: #242424;
-      margin-top: 10px;
-    }
-  
-    .cyber-nav {
-      position: fixed;
-      padding: 10px;
-    }
-  
-    .cyber-link {
-      width: 100%;
-      margin: 5px 0;
-      text-align: center;
-    }
-  
+@media (max-width: 900px) {
     .card {
-      margin: 10px auto;
-      width: 95%;
-      border-radius: 15px;
+        margin: 10px auto;
+        width: 80%;
+        border-radius: 15px;
     }
-  
-    .post img {
-      max-width: 100%;
-      height: auto;
-    }
-  
-    h1 {
-      font-size: 2.5em;
-      padding-top: 100px;
-    }
-  
-    h3 {
-      font-size: 1.1rem;
-    }
-  
-    .action-buttons {
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-  
-    .btn {
-      font-size: 0.8em;
-      padding: 6px 12px;
-      margin: 3px;
-    }
-  
-    .instagram-controls-container {
-      justify-content: center;
-    }
-  
-    .contactForm {
-      padding: 5%;
-      
-    }
-  }
-  
+}
 
-  @media (max-width: 576px) {
+/* Telas pequenas (celulares, 768px para baixo) */
+@media (max-width: 768px) {
     main {
         margin-left: 0;
         margin-right: 0;
-      }
-        
-      .navbar-collapse {
+    }
+
+    .navbar-collapse {
         background: #242424;
         margin-top: 10px;
-      }
-    
-      .cyber-nav {
-        position: relative;
+    }
+
+    .cyber-nav {
+        position: fixed;
         padding: 10px;
-      }
-    
-      .cyber-link {
+    }
+
+    .cyber-link {
         width: 100%;
         margin: 5px 0;
         text-align: center;
-      }
-    
-      .card {
+    }
+
+    .card {
         margin: 10px auto;
-        width: 95%;
+        width: 100%;
         border-radius: 15px;
-      }
-    
-      .post img {
+    }
+
+    .post img {
         max-width: 100%;
         height: auto;
-      }
-    
-      h1 {
+    }
+
+    h1 {
         font-size: 2.5em;
         padding-top: 100px;
-      }
-    
-      h3 {
+    }
+
+    h3 {
         font-size: 1.1rem;
-      }
-    
-      .action-buttons {
+    }
+
+    .action-buttons {
         flex-direction: column;
         align-items: center;
         gap: 10px;
-      }
-    
-      .btn {
+    }
+
+    .btn {
         font-size: 0.8em;
         padding: 6px 12px;
         margin: 3px;
-      }
-    
-      .instagram-controls-container {
-        justify-content: center;
-      }
-    
-      .contactForm {
-        padding: 5%;
-        
-      }
     }
+
+    .instagram-controls-container {
+        justify-content: center;
+    }
+
+    .contactForm {
+        padding: 5%;
+
+    }
+
+    .news {
+        display: block;
+        justify-content: center;
+        padding-right: 6%;
+    }
+
+    .col-sm-2 {
+        width: 100%;
+    }
+
+    .col-lg-6 {
+        width: 100%;
+        border-bottom: 1px solid #009c9c;
+    }
+
+    .archive-title {
+        font-size: 1rem;
+        margin-bottom: 1px;
+    }
+
+}
+
+
+@media (max-width: 576px) {
+    main {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .navbar-collapse {
+        background: #242424;
+        margin-top: 10px;
+    }
+
+    .cyber-nav {
+        position: fixed;
+        padding: 10px;
+    }
+
+    .cyber-link {
+        width: 100%;
+        text-align: center;
+        height: 2rem;
+    }
+
+    .card {
+        margin: 10px auto;
+        width: 100%;
+        border-radius: 15px;
+    }
+
+    .post img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    h1 {
+        font-size: 2.5em;
+        padding-top: 100px;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .btn {
+        font-size: 0.8em;
+        padding: 6px 12px;
+        margin: 3px;
+    }
+
+    .instagram-controls-container {
+        justify-content: center;
+    }
+
+    .contactForm {
+        padding: 5%;
+
+    }
+
+    .news {
+        display: block;
+        justify-content: center;
+        padding-right: 6%;
+    }
+
+    .col-sm-2 {
+        border: 0;
+        width: 100%;
+    }
+
+    .col-lg-6 {
+        width: 100%;
+        border-bottom: 1px solid #009c9c;
+    }
+
+    .archive-title {
+        font-size: 1rem;
+        margin-bottom: 5px;
+        border-bottom: 1px solid #009c9c;
+    }
+}

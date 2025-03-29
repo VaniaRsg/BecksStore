@@ -235,7 +235,7 @@ class BlogManager {
           html += `
             <div class="archive-day">
               <div class="archive-header" data-day="${day}">
-                <i class="">- </i>
+                ✦ 
                 ${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}
               </div>
               <div class="archive-posts collapse show">
