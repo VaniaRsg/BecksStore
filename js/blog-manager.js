@@ -48,9 +48,14 @@ class BlogManager {
         const selectedPost = this.archivedPosts.find(p => p.id === postId);
         
         if (selectedPost) {
-          // Remove o post atual e exibe o selecionado
+          // Renderiza o post selecionado
           this.postsContainer.innerHTML = '';
           this.renderPosts([selectedPost]);
+          
+          // Scroll para a seção home
+          document.getElementById('home').scrollIntoView({ 
+            behavior: 'smooth' // Animação suave
+          });
         }
       });
     });
