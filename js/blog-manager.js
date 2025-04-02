@@ -100,7 +100,7 @@ class BlogManager {
             ${post.marcas ? `
               <div class="specs-grid">
                 <div class="specs-category">
-                  <h5>Marcas Compatíveis:</h5>
+                  <h5>Compatible Body:</h5>
                   <ul class="specs-list">
                     ${post.marcas.map(marca => `
                       <li class="specs-item">${marca}</li>

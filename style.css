@@ -70,10 +70,10 @@ h4 {
 }
 
 h5 {
-    font-size: 1.5em;
+    font-size: 1.2em;
     text-align: left;
     color: #ffffff;
-    text-align: center;
+    
 }
 
 h6 {
@@ -107,6 +107,10 @@ button:focus {
     text-shadow: 1px 1px 2px #000000;
     text-shadow: 2px 2px 10px #00ffff;
     color: #00ffff;
+    font-family: great vibes;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 5px;
 }
 .cyber-nav {
     background: #242424;
@@ -216,36 +220,6 @@ button:focus {
 /* ------------------------------------------------------------------ */
 /* ----------------------------ARQUIVO------------------------------- */
 /* ------------------------------------------------------------------ */
-/*.offcanvas-start {
-    width: 15% !important;
-    height: 100vh;
-    border-right: 2px solid #72727255 !important;
-    transition: none !important;
-    z-index: 900;
-    box-shadow:
-    7px 7px 10px rgba(0, 0, 0, 0.562),
-    inset 0 4px 8px rgba(95, 95, 95, 0.3) !important;
-}
-.offcanvas-start .offcanvas-header,
-.offcanvas-start .offcanvas-body {
-    display: block !important; 
-    opacity: 1 !important;
-    margin-top: 70px;
-    visibility: visible !important;
-}
-.offcanvas-start::after {
-    position: fixed;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #00ffff;
-    font-size: 1.2rem;
-    animation: static-pulse 2s infinite;
-}
-@keyframes static-pulse {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.8; }
-}*/
 .news {
     display: flex;
     width: 100%;
@@ -377,6 +351,9 @@ button:focus {
 }
 .post {
     width: 80%;
+}
+.specs-category {
+    text-align: left;
 }
 /* ------------------------------------------------------------------ */
 /* -------------------------INSTAGRAM BTN---------------------------- */
