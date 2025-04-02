@@ -38,27 +38,58 @@ class BlogManager {
       } catch (error) {
       console.error('Erro ao carregar posts:', error);
   }
-}
+  }
 
   setupPostLinks() {
     document.querySelectorAll('.post-link').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const postId = parseInt(link.closest('.archive-post').dataset.id);
-        const selectedPost = this.archivedPosts.find(p => p.id === postId);
-        
-        if (selectedPost) {
-          // Renderiza o post selecionado
-          this.postsContainer.innerHTML = '';
-          this.renderPosts([selectedPost]);
-          
-          // Scroll para a seção home
-          document.getElementById('home').scrollIntoView({ 
-            behavior: 'smooth' // Animação suave
-          });
-        }
-      });
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Alteração crucial ▼ (removemos o .closest('.archive-post'))
+            const postId = parseInt(link.dataset.postid);
+            const selectedPost = [...this.archivedPosts, ...this.activePosts].find(p => p.id === postId);
+            
+            if (selectedPost) {
+                this.postsContainer.innerHTML = '';
+                this.renderPosts([selectedPost]);
+                
+                document.getElementById('home').scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
     });
+}
+
+
+  renderLastPosts() {
+    const lastPostsContainer = document.querySelector('.lastposts');
+    if (!lastPostsContainer) return;
+
+    // 1. Armazena os posts antes de renderizar
+    const lastFourPosts = this.archivedPosts.slice(0, 4);
+    
+    const html = `
+    <div class="last-posts">
+        <h6 class="sidebar-title">Posts Recentes:</h6>
+        ${lastFourPosts.map(post => // Dentro da template string do lastFourPosts.map
+          `<div class="sidebar-post" data-id="${post.id}">
+              <a href="#home" class="post-link" 
+                 onclick="document.getElementById('home').scrollIntoView({ behavior: 'smooth' })"
+                 data-postid="${post.id}">
+                  <img src="${post.imagem}" class="sidebar-thumb" alt="${post.titulo}">
+                  <h6 class="sidebar-post-title">${post.titulo}</h6>
+              </a>
+              <p class="sidebar-excerpt">${this.getExcerpt(post.conteudo, 10)}</p>
+          </div>`
+          ).join('')}
+    </div>`;
+
+    // 2. Atualiza o container
+    lastPostsContainer.innerHTML = html;
+          
+    // 3. Configura o delegador de eventos uma única vez
+    this.setupPostLinks();
   }
 
   renderPosts(posts) {
@@ -136,43 +167,6 @@ class BlogManager {
     this.addNavigationLink();
   }
 
- 
-  renderLastPosts() {
-    const lastPostsContainer = document.querySelector('.lastposts');
-    if (!lastPostsContainer) return;
-  
-    const lastTwoPosts = this.archivedPosts.slice(0, 4);
-    const currentPost = this.activePosts[0];
-    // <div class="current-post mb-4">
-    //<h6 class="sidebar-title">Post Atual:</h6>
-    //<div class="sidebar-post" data-id="${currentPost.id}">
-    //  <a href="#" class="post-link">
-    //    <img src="${currentPost.imagem}" class="sidebar-thumb" alt="${currentPost.titulo}">
-    //    <h6 class="sidebar-post-title">${currentPost.titulo}</h6>
-    //  </a>
-    //  <p class="sidebar-excerpt">${this.getExcerpt(currentPost.conteudo, 10)}</p>
-    //</div>
-    //</div>
-    let html = `
-      
-  
-      <div class="last-posts">
-        <h6 class="sidebar-title">Posts Recentes:</h6>
-        ${lastTwoPosts.map(post => `
-          <div class="sidebar-post" data-id="${post.id}">
-            <a href="#" class="post-link">
-              <img src="${post.imagem}" class="sidebar-thumb" alt="${post.titulo}">
-              <h6 class="sidebar-post-title">${post.titulo}</h6>
-            </a>
-            <p class="sidebar-excerpt">${this.getExcerpt(post.conteudo, 10)}</p>
-          </div>
-        `).join('')}
-      </div>
-    `;
-  
-    lastPostsContainer.innerHTML = html;
-  }
-  
   getExcerpt(content, maxWords) {
     const text = Array.isArray(content) 
       ? content.join(' ') 
@@ -250,7 +244,7 @@ class BlogManager {
           posts.forEach(post => {
             html += `
               <div class="archive-post" data-id="${post.id}">
-                <a href="#" class="post-link">${post.titulo}</a>
+                <a href="#" class="post-link" onclick="document.getElementById('home').scrollIntoView({ behavior: 'smooth' })">${post.titulo}</a>
               </div>
             `;
           });
